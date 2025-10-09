@@ -23,10 +23,6 @@ public:
 
     Vector2 previousPosition;
     Rectangle GetHitbox() const;
-    Texture2D frogIdle = { 0 };
-    Texture2D frogIdleLeft = { 0 };
-    Texture2D frogJumpRight = { 0 };
-    Texture2D frogJumpLeft = { 0 };
 
 private:
     Vector2 position;     // Player's position in the world
@@ -44,4 +40,10 @@ private:
     float blinkTimer = 0.0f;
     float blinkInterval = 3.0f; // seconds between blinks
     float blinkDuration = 0.2f; // how long the blink lasts
+
+    
+    Texture2D frogIdle = { 0 };
+    Texture2D frogIdleLeft = { 0 };
+    Texture2D frogJumpRight = { 0 };
+    Texture2D frogJumpLeft = { 0 };
 };

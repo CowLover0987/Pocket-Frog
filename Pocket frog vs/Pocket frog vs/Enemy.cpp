@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include <cmath>
 #include "Global.h"
+#include <iostream>
 
 
 inline float Clamp(float value, float min, float max) {
@@ -11,11 +12,19 @@ inline float Clamp(float value, float min, float max) {
 
 Enemy::Enemy(Vector2 startPos) {
     position = startPos;
+    enemyMoveRight = LoadTexture("Resource Files/evil_wool_right.png");
+    enemyMoveLeft = LoadTexture("Resource Files/evil_wool_left.png");
+
+    if (enemyMoveRight.id == 0) std::cerr << "Failed to load enemy_right.png\n";
+    if (enemyMoveLeft.id == 0) std::cerr << "Failed to load enemy_left.png\n";
 }
 
 void Enemy::Update(float dt, Vector2 playerPos, const std::vector<Bush>& bushes) {
     Vector2 toPlayer = { playerPos.x - position.x, playerPos.y - position.y };
     float distance = std::sqrt(toPlayer.x * toPlayer.x + toPlayer.y * toPlayer.y);
+
+    if (velocity.x > 0) facingRight = true;
+    else if (velocity.x < 0) facingRight = false;
 
     if (distance < detectionRadius) {
         // Normalize direction (x-axis only)
@@ -36,7 +45,15 @@ void Enemy::Update(float dt, Vector2 playerPos, const std::vector<Bush>& bushes)
 }
 
 void Enemy::Draw() const {
-    DrawRectangleV(position, Vector2{ width, height }, ORANGE);
+    //DrawRectangleV(position, Vector2{ width, height }, ORANGE);
+    const Texture2D* enemyTexture = facingRight ? &enemyMoveRight : &enemyMoveLeft;
+
+    Vector2 drawPos = {
+        position.x - enemyTexture->width / 2,
+        position.y - enemyTexture->height
+    };
+
+    DrawTexture(*enemyTexture, (int)drawPos.x, (int)drawPos.y, WHITE);
 }
 
 Rectangle Enemy::GetCollider() const {
@@ -60,4 +77,9 @@ void Enemy::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
     // Apply movement
     position.x = proposed.x;
     position.y = proposed.y;
+}
+
+Enemy::~Enemy() {
+    UnloadTexture(enemyMoveRight);
+    UnloadTexture(enemyMoveLeft);
 }

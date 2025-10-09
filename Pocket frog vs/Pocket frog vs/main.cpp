@@ -73,6 +73,7 @@ void DrawGame() {
     DrawLine(0, groundY, 3000, groundY, RED); // horizontal ground line
 
     player->Draw();
+
     for (const Bush& bush : bushes) {
         bush.Draw();
     }

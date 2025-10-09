@@ -12,6 +12,8 @@ public:
 
     void TryMove(Vector2 delta, const std::vector<Bush>& bushes);
 
+    ~Enemy();
+
 private:
     Vector2 position;
     float width = 60;   // bigger than bush
@@ -20,4 +22,8 @@ private:
     float chaseSpeed = 100;
     float detectionRadius = 200;
     Vector2 velocity = { 0, 0 };
+
+    Texture2D enemyMoveRight = { 0 };
+    Texture2D enemyMoveLeft = { 0 };
+    bool facingRight = true;
 };

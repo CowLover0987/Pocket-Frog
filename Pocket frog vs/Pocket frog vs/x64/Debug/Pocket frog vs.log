@@ -1,6 +1,6 @@
 ﻿  bush.cpp
   Enemy.cpp
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Enemy.cpp(30,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Enemy.cpp(39,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   main.cpp
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(72,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(72,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
