@@ -1,13 +1,16 @@
 #include "Player.h"
 #include "Global.h"
+#include <iostream>
 
 float groundY = 520;
 int maxFrames = 4;
-Texture2D walkRightStrip = LoadTexture("right_walking_animation.png");
-Texture2D walkLeftStrip = LoadTexture("assets/left_walking_animation.png");
+
+// Declare textures but don't load them at global scope
+Texture2D walkRightStrip = { 0 };
+Texture2D walkLeftStrip = { 0 };
 Texture2D* currentStrip = &walkRightStrip; // default facing right
 
-Rectangle frameRec = { 0, 0, walkRightStrip.width / maxFrames, walkRightStrip.height };
+Rectangle frameRec = { 0, 0, 0, 0 };
 
 Rectangle Player::GetHitbox() const {
     return hitbox;
@@ -19,8 +22,38 @@ inline float Clamp(float value, float min, float max) {
     return value;
 }
 
+// Helper to load textures once (call after InitWindow)
+static void EnsurePlayerResourcesLoaded() {
+    static bool loaded = false;
+    if (loaded) return;
+
+    walkRightStrip = LoadTexture("Resource Files/right_walking_animation.png");
+    walkLeftStrip = LoadTexture("Resource Files/left_walking_animation.png");
+
+    if (walkRightStrip.id == 0) {
+        std::cerr << "Failed to load: Resource Files/right_walking_animation.png\n";
+    }
+    if (walkLeftStrip.id == 0) {
+        std::cerr << "Failed to load: Resource Files/left_walking_animation.png\n";
+    }
+
+    // Protect against division by zero if load failed
+    if (walkRightStrip.width > 0 && walkRightStrip.height > 0) {
+        // Fix for E2361: invalid narrowing conversion from "int" to "float"
+        // Change walkRightStrip.width / maxFrames and walkRightStrip.height to float
+        frameRec = { 0, 0, static_cast<float>(walkRightStrip.width) / static_cast<float>(maxFrames), static_cast<float>(walkRightStrip.height) };
+    } else {
+        frameRec = { 0, 0, 32, 32 }; // fallback
+    }
+
+    loaded = true;
+}
+
 // Constructor: initializes the player's position
 Player::Player(Vector2 startPos) {
+    // Ensure textures are loaded after InitWindow (main constructs player after InitWindow)
+    EnsurePlayerResourcesLoaded();
+
     position = startPos;
     hitbox = { position.x, position.y, width, height };
 }
@@ -41,7 +74,7 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
 
     TryMove(move, bushes);
 
-// Jump input
+    // Jump input
     if (IsKeyPressed(KEY_SPACE) && isOnGround) {
         velocity.y = jumpForce;
         isOnGround = false;
@@ -61,7 +94,9 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
 // Draws the player as a blue rectangle
 void Player::Draw() const {
     DrawRectangleV(position, Vector2{ width, height }, BLUE);
-    DrawTextureRec(*currentStrip, frameRec, position, WHITE);
+    if (currentStrip && currentStrip->id != 0) {
+        DrawTextureRec(*currentStrip, frameRec, position, WHITE);
+    }
 }
 
 // Returns the player's current position (used by camera or other systems)
