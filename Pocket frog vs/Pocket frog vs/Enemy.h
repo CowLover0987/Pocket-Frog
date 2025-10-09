@@ -16,7 +16,7 @@ public:
 
 private:
     Vector2 position;
-    float width = 60;   // bigger than bush
+    float width = 96;   // bigger than bush
     float height = 60;
     float speed = 40;   // wander speed
     float chaseSpeed = 100;

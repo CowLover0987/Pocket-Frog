@@ -1,8 +1,23 @@
-﻿  main.cpp
+﻿  bush.cpp
+  Enemy.cpp
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Enemy.cpp(39,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  main.cpp
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(72,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(72,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(73,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(73,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Player.cpp
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(89,53): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(89,42): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(101,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(101,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(101,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(101,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(102,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(102,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(102,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(102,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   Pocket frog vs.vcxproj -> C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\x64\Debug\Pocket frog vs.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

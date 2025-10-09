@@ -54,7 +54,7 @@ void Enemy::Draw() const {
     };
 
     DrawTexture(*enemyTexture, (int)drawPos.x, (int)drawPos.y, WHITE);
-    DrawText(TextFormat("Enemy Texture ID: %d", enemyTexture->id), position.x, position.y - 20, 10, RED);
+    
 }
 
 Rectangle Enemy::GetCollider() const {
