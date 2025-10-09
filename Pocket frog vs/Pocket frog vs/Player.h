@@ -8,7 +8,7 @@ class Player {
 public:
     // Constructor: sets the starting position of the player
     Player(Vector2 startPos);
-
+    ~Player();
     // Updates player logic (movement, etc.)
     void Update(float dt, const std::vector<Bush>& bushes);
 
@@ -23,7 +23,7 @@ public:
 
     Vector2 previousPosition;
     Rectangle GetHitbox() const;
-
+    Texture2D frogIdle = { 0 };
 private:
     Vector2 position;     // Player's position in the world
     Rectangle hitbox;    // Player's collision rectangle
@@ -34,13 +34,5 @@ private:
     float gravity = 800.0f;       // pixels per second²
     float jumpForce = -500.0f;    // upward velocity
     bool isOnGround = false;
-    
-    Texture2D walkRightStrip;
-    Texture2D walkLeftStrip;
-    Texture2D* currentStrip = nullptr;
-    Rectangle frameRec;
-    int currentFrame = 0;
-    float frameTime = 0;
-    float frameSpeed = 0.1f;
-    
+
 };

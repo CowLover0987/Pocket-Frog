@@ -135,39 +135,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resource Files\idle_left_animation.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="Resource Files\idle_right_animation.png">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="Resource Files\jump_left_animation.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="Resource Files\jump_right_animation.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="Resource Files\left_walking_animation.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="Resource Files\pin_cushion_bush.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="Resource Files\pin_cushion_bush_2.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="Resource Files\right_walking_animation.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="x64\Debug\assets\left_walking_animation.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-    <Image Include="x64\Debug\assets\right_walking_animation.png">
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
-    </Image>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

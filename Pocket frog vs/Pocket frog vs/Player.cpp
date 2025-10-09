@@ -3,7 +3,7 @@
 #include <iostream>
 
 float groundY = 520;
-int maxFrames = 4;
+int maxFrames = 6;
 
 // Declare textures but don't load them at global scope
 Texture2D walkRightStrip = { 0 };
@@ -24,29 +24,12 @@ inline float Clamp(float value, float min, float max) {
 
 // Helper to load textures once (call after InitWindow)
 static void EnsurePlayerResourcesLoaded() {
-    static bool loaded = false;
-    if (loaded) return;
+    frogIdle = LoadTexture("Resource Files/idle_right.png");
 
-    walkRightStrip = LoadTexture("Resource Files/right_walking_animation.png");
-    walkLeftStrip = LoadTexture("Resource Files/left_walking_animation.png");
-
-    if (walkRightStrip.id == 0) {
-        std::cerr << "Failed to load: Resource Files/right_walking_animation.png\n";
-    }
-    if (walkLeftStrip.id == 0) {
-        std::cerr << "Failed to load: Resource Files/left_walking_animation.png\n";
+    if (frogIdle.id == 0) {
+        std::cerr << "Failed to load: Resource Files/frog_idle.png\n";
     }
 
-    // Protect against division by zero if load failed
-    if (walkRightStrip.width > 0 && walkRightStrip.height > 0) {
-        // Fix for E2361: invalid narrowing conversion from "int" to "float"
-        // Change walkRightStrip.width / maxFrames and walkRightStrip.height to float
-        frameRec = { 0, 0, static_cast<float>(walkRightStrip.width) / static_cast<float>(maxFrames), static_cast<float>(walkRightStrip.height) };
-    } else {
-        frameRec = { 0, 0, 32, 32 }; // fallback
-    }
-
-    loaded = true;
 }
 
 // Constructor: initializes the player's position
@@ -63,14 +46,22 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     previousPosition = position;
     velocity.y += gravity * dt; // apply gravity
     Vector2 move = { 0, velocity.y * dt };
-    if (IsKeyDown(KEY_LEFT)) {
-        move.x -= 200 * dt;
+    bool isMoving = false;
+
+    /*if (IsKeyDown(KEY_LEFT)) {
+        velocity.x = -200*dt;
         currentStrip = &walkLeftStrip;
+        isMoving = true;
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        move.x += 200 * dt;
+        velocity.x = 200*dt;
         currentStrip = &walkRightStrip;
-    }
+        isMoving = true;
+    }*/
+
+    if (IsKeyDown(KEY_LEFT)) { move.x -= 200 * dt; }
+    if (IsKeyDown(KEY_RIGHT)) { move.x += 200 * dt; }
+
 
     TryMove(move, bushes);
 
@@ -81,22 +72,22 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     }
 
     hitbox.y = position.y;
-
-    frameTime += dt;
-    if (frameTime >= frameSpeed) {
-        frameTime = 0;
-        currentFrame++;
-        if (currentFrame >= maxFrames) currentFrame = 0;
-        frameRec.x = currentFrame * frameRec.width;
-    }
 }
 
 // Draws the player as a blue rectangle
 void Player::Draw() const {
-    DrawRectangleV(position, Vector2{ width, height }, BLUE);
-    if (currentStrip && currentStrip->id != 0) {
-        DrawTextureRec(*currentStrip, frameRec, position, WHITE);
+    DrawRectangleLinesEx(hitbox, 2, RED); // shows hitbox
+    if (frogIdle.id != 0) {
+        Vector2 drawPos = {
+            hitbox.x + hitbox.width / 2 - frogIdle.width / 2,
+            hitbox.y + hitbox.height - frogIdle.height
+        };
+        DrawTexture(frogIdle, drawPos.x, drawPos.y, WHITE);
     }
+}
+
+Player::~Player() {
+    UnloadTexture(frogIdle);
 }
 
 // Returns the player's current position (used by camera or other systems)
