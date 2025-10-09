@@ -35,4 +35,12 @@ private:
     float jumpForce = -500.0f;    // upward velocity
     bool isOnGround = false;
     
+    Texture2D walkRightStrip;
+    Texture2D walkLeftStrip;
+    Texture2D* currentStrip = nullptr;
+    Rectangle frameRec;
+    int currentFrame = 0;
+    float frameTime = 0;
+    float frameSpeed = 0.1f;
+    
 };

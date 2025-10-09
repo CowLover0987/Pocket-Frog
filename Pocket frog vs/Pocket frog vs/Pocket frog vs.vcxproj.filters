@@ -41,5 +41,16 @@
     <ClInclude Include="Global.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="x64\Debug\assets\right_walking_animation.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="x64\Debug\assets\left_walking_animation.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

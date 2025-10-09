@@ -2,6 +2,12 @@
 #include "Global.h"
 
 float groundY = 520;
+int maxFrames = 4;
+Texture2D walkRightStrip = LoadTexture("right_walking_animation.png");
+Texture2D walkLeftStrip = LoadTexture("assets/left_walking_animation.png");
+Texture2D* currentStrip = &walkRightStrip; // default facing right
+
+Rectangle frameRec = { 0, 0, walkRightStrip.width / maxFrames, walkRightStrip.height };
 
 Rectangle Player::GetHitbox() const {
     return hitbox;
@@ -24,8 +30,14 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     previousPosition = position;
     velocity.y += gravity * dt; // apply gravity
     Vector2 move = { 0, velocity.y * dt };
-    if (IsKeyDown(KEY_LEFT)) move.x -= 200 * dt;
-    if (IsKeyDown(KEY_RIGHT)) move.x += 200 * dt;
+    if (IsKeyDown(KEY_LEFT)) {
+        move.x -= 200 * dt;
+        currentStrip = &walkLeftStrip;
+    }
+    if (IsKeyDown(KEY_RIGHT)) {
+        move.x += 200 * dt;
+        currentStrip = &walkRightStrip;
+    }
 
     TryMove(move, bushes);
 
@@ -36,11 +48,20 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     }
 
     hitbox.y = position.y;
+
+    frameTime += dt;
+    if (frameTime >= frameSpeed) {
+        frameTime = 0;
+        currentFrame++;
+        if (currentFrame >= maxFrames) currentFrame = 0;
+        frameRec.x = currentFrame * frameRec.width;
+    }
 }
 
 // Draws the player as a blue rectangle
 void Player::Draw() const {
     DrawRectangleV(position, Vector2{ width, height }, BLUE);
+    DrawTextureRec(*currentStrip, frameRec, position, WHITE);
 }
 
 // Returns the player's current position (used by camera or other systems)

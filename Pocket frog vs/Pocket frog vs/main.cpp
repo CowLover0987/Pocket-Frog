@@ -66,6 +66,9 @@ void DrawGame() {
 
     BeginMode2D(camera);
 
+    DrawRectangle(100, 100, 50, 50, RED); // should appear in top-left
+    DrawText("Debug!", 20, 20, 30, WHITE);
+
     // Draw ground
     DrawRectangle(0, groundY, 3000, screenHeight - groundY, DARKBROWN);
     DrawLine(0, groundY, 3000, groundY, RED); // horizontal ground line
