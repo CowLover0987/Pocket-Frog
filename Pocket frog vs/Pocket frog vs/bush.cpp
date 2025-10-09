@@ -13,8 +13,8 @@ Bush::Bush(Vector2 position) {
 }
 
 void Bush::Draw() const {
-    //DrawTexture(bushTexture, (int)collider.x, (int)collider.y, WHITE);
-	DrawRectangle((int)collider.x, (int)collider.y, (int)collider.width, (int)collider.height, GREEN);
+    DrawTexture(bushTexture, (int)collider.x, (int)collider.y, WHITE);
+	//DrawRectangle((int)collider.x, (int)collider.y, (int)collider.width, (int)collider.height, GREEN);
 }
 
 Rectangle Bush::GetCollider() const {
@@ -22,6 +22,6 @@ Rectangle Bush::GetCollider() const {
 }
 
 
-Bush::~Bush() {
-    UnloadTexture(bushTexture);
-}
+//Bush::~Bush() {
+//    UnloadTexture(bushTexture);
+//}

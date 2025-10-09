@@ -4,7 +4,7 @@
 class Bush {
 public:
     Bush(Vector2 position);
-    ~Bush();
+    //~Bush();
     void Draw() const;
     Rectangle GetCollider() const;
 

@@ -39,8 +39,8 @@ void InitGame() {
     player = std::make_unique<Player>(Vector2{ 100, 520 });
 
 	//Bushes spawned locations, will need to be adjusted later
-    bushes.push_back(Bush({ 400, 500 }));
-    bushes.push_back(Bush({ 600, 500 }));
+    bushes.push_back(Bush({ 400, 490 }));
+    bushes.push_back(Bush({ 600, 490 }));
     //Ememys spawned locations, will need to be adjusted later
     enemies.push_back(Enemy({ 800, 490 }));
 }

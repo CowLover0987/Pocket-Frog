@@ -12,11 +12,11 @@ inline float Clamp(float value, float min, float max) {
 
 Enemy::Enemy(Vector2 startPos) {
     position = startPos;
-    enemyMoveRight = LoadTexture("Resource Files/evil_wool_right.png");
-    enemyMoveLeft = LoadTexture("Resource Files/evil_wool_left.png");
+    enemyMoveRight = LoadTexture("Resource Files/enemy_right.png");
+    enemyMoveLeft = LoadTexture("Resource Files/enemy_left.png");
 
-    if (enemyMoveRight.id == 0) std::cerr << "Failed to load enemy_right.png\n";
-    if (enemyMoveLeft.id == 0) std::cerr << "Failed to load enemy_left.png\n";
+    if (enemyMoveRight.id == 0) std::cerr << "Failed to load evil_wool_right.png\n";
+    if (enemyMoveLeft.id == 0) std::cerr << "Failed to load evil_wool_left.png\n";
 }
 
 void Enemy::Update(float dt, Vector2 playerPos, const std::vector<Bush>& bushes) {
@@ -54,6 +54,7 @@ void Enemy::Draw() const {
     };
 
     DrawTexture(*enemyTexture, (int)drawPos.x, (int)drawPos.y, WHITE);
+    DrawText(TextFormat("Enemy Texture ID: %d", enemyTexture->id), position.x, position.y - 20, 10, RED);
 }
 
 Rectangle Enemy::GetCollider() const {
@@ -79,7 +80,7 @@ void Enemy::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
     position.y = proposed.y;
 }
 
-Enemy::~Enemy() {
-    UnloadTexture(enemyMoveRight);
-    UnloadTexture(enemyMoveLeft);
-}
+//Enemy::~Enemy() {
+//    UnloadTexture(enemyMoveRight);
+//    UnloadTexture(enemyMoveLeft);
+//}

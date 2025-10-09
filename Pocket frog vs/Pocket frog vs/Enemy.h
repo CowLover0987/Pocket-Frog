@@ -12,7 +12,7 @@ public:
 
     void TryMove(Vector2 delta, const std::vector<Bush>& bushes);
 
-    ~Enemy();
+    //~Enemy();
 
 private:
     Vector2 position;
