@@ -3,14 +3,6 @@
 #include <iostream>
 
 float groundY = 520;
-int maxFrames = 6;
-
-// Declare textures but don't load them at global scope
-Texture2D walkRightStrip = { 0 };
-Texture2D walkLeftStrip = { 0 };
-Texture2D* currentStrip = &walkRightStrip; // default facing right
-
-Rectangle frameRec = { 0, 0, 0, 0 };
 
 Rectangle Player::GetHitbox() const {
     return hitbox;
@@ -22,20 +14,17 @@ inline float Clamp(float value, float min, float max) {
     return value;
 }
 
-// Helper to load textures once (call after InitWindow)
-static void EnsurePlayerResourcesLoaded() {
-    frogIdle = LoadTexture("Resource Files/idle_right.png");
-
-    if (frogIdle.id == 0) {
-        std::cerr << "Failed to load: Resource Files/frog_idle.png\n";
-    }
-
-}
-
 // Constructor: initializes the player's position
 Player::Player(Vector2 startPos) {
-    // Ensure textures are loaded after InitWindow (main constructs player after InitWindow)
-    EnsurePlayerResourcesLoaded();
+    frogIdle = LoadTexture("Resource Files/idle_right.png");
+    frogIdleLeft = LoadTexture("Resource Files/idle_left.png");
+    frogJumpRight = LoadTexture("Resource Files/jump_right.png");
+    frogJumpLeft = LoadTexture("Resource Files/jump_left.png");
+
+    if (frogJumpRight.id == 0) std::cerr << "Failed to load jump_right.png\n";
+    if (frogJumpLeft.id == 0) std::cerr << "Failed to load jump_left.png\n";
+    if (frogIdle.id == 0) std::cerr << "Failed to load idle_right.png\n";
+    if (frogIdleLeft.id == 0) std::cerr << "Failed to load idle_left.png\n";
 
     position = startPos;
     hitbox = { position.x, position.y, width, height };
@@ -46,21 +35,16 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     previousPosition = position;
     velocity.y += gravity * dt; // apply gravity
     Vector2 move = { 0, velocity.y * dt };
-    bool isMoving = false;
 
-    /*if (IsKeyDown(KEY_LEFT)) {
-        velocity.x = -200*dt;
-        currentStrip = &walkLeftStrip;
-        isMoving = true;
+
+    if (IsKeyDown(KEY_LEFT)) {
+        move.x -= 200 * dt;
+        facingRight = false;
     }
     if (IsKeyDown(KEY_RIGHT)) {
-        velocity.x = 200*dt;
-        currentStrip = &walkRightStrip;
-        isMoving = true;
-    }*/
-
-    if (IsKeyDown(KEY_LEFT)) { move.x -= 200 * dt; }
-    if (IsKeyDown(KEY_RIGHT)) { move.x += 200 * dt; }
+        move.x += 200 * dt;
+        facingRight = true;
+    }
 
 
     TryMove(move, bushes);
@@ -72,22 +56,58 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     }
 
     hitbox.y = position.y;
+
+    blinkTimer += dt;
+
+    if (!isBlinking && blinkTimer >= blinkInterval) {
+        isBlinking = true;
+        blinkTimer = 0.0f;
+    }
+
+    if (isBlinking && blinkTimer >= blinkDuration) {
+        isBlinking = false;
+        blinkTimer = 0.0f;
+    }
 }
 
 // Draws the player as a blue rectangle
 void Player::Draw() const {
     DrawRectangleLinesEx(hitbox, 2, RED); // shows hitbox
-    if (frogIdle.id != 0) {
+    const Texture2D* frogTexture = nullptr;
+
+    if (!isOnGround) {
+        frogTexture = facingRight ? &frogJumpRight : &frogJumpLeft;
+    }
+    else {
+        frogTexture = facingRight ? &frogIdle : &frogIdleLeft;
+    }
+    if (frogTexture && frogTexture->id != 0) {
         Vector2 drawPos = {
-            hitbox.x + hitbox.width / 2 - frogIdle.width / 2,
-            hitbox.y + hitbox.height - frogIdle.height
+            hitbox.x + hitbox.width / 2 - frogTexture->width / 2,
+            hitbox.y + hitbox.height - frogTexture->height
         };
-        DrawTexture(frogIdle, drawPos.x, drawPos.y, WHITE);
+        DrawTexture(*frogTexture, drawPos.x, drawPos.y, WHITE);
+    }
+
+    if (isBlinking) {
+        // Draw two horizontal lines over the eyes
+        float eyeY = hitbox.y + 23;
+        float eyeWidth =4;
+        float eyeHeight = 2;
+
+        float leftEyeX = hitbox.x + hitbox.width / 2 - 12;
+        float rightEyeX = hitbox.x + hitbox.width / 2 + 8;
+
+        DrawRectangle(leftEyeX, eyeY, eyeWidth, eyeHeight, PINK);
+        DrawRectangle(rightEyeX, eyeY, eyeWidth, eyeHeight, PINK);
     }
 }
 
 Player::~Player() {
     UnloadTexture(frogIdle);
+    UnloadTexture(frogIdleLeft);
+    UnloadTexture(frogJumpRight);
+    UnloadTexture(frogJumpLeft);
 }
 
 // Returns the player's current position (used by camera or other systems)

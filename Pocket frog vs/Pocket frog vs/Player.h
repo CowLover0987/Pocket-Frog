@@ -24,6 +24,10 @@ public:
     Vector2 previousPosition;
     Rectangle GetHitbox() const;
     Texture2D frogIdle = { 0 };
+    Texture2D frogIdleLeft = { 0 };
+    Texture2D frogJumpRight = { 0 };
+    Texture2D frogJumpLeft = { 0 };
+
 private:
     Vector2 position;     // Player's position in the world
     Rectangle hitbox;    // Player's collision rectangle
@@ -34,5 +38,10 @@ private:
     float gravity = 800.0f;       // pixels per second²
     float jumpForce = -500.0f;    // upward velocity
     bool isOnGround = false;
+    bool facingRight = true;
 
+    bool isBlinking = false;
+    float blinkTimer = 0.0f;
+    float blinkInterval = 3.0f; // seconds between blinks
+    float blinkDuration = 0.2f; // how long the blink lasts
 };
