@@ -1,21 +1,12 @@
-﻿  bush.cpp
-  Enemy.cpp
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Enemy.cpp(39,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  main.cpp
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(88,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(88,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(89,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(89,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Player.cpp
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(140,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(140,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(140,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(140,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(141,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(141,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(141,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(141,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
+﻿  Player.cpp
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(144,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(144,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(144,33): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(144,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(145,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(145,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(145,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(145,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Pocket frog vs.vcxproj -> C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\x64\Debug\Pocket frog vs.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

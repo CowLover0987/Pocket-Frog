@@ -47,8 +47,7 @@
               "ViewState": "AgIAACEAAAAAAAAAAAAAAEUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-30T14:21:12.944Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -60,8 +59,7 @@
               "RelativeToolTip": "Pocket frog vs\\Global.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-12T12:14:35.483Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-12T12:14:35.483Z"
             },
             {
               "$type": "Document",
@@ -73,8 +71,7 @@
               "RelativeToolTip": "Pocket frog vs\\Enemy.cpp",
               "ViewState": "AgIAACQAAAAAAAAAAAAAAF0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-09T18:23:27.491Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-09T18:23:27.491Z"
             },
             {
               "$type": "Document",
@@ -86,8 +83,7 @@
               "RelativeToolTip": "Pocket frog vs\\Enemy.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-04T12:55:17.229Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-04T12:55:17.229Z"
             },
             {
               "$type": "Document",
@@ -99,8 +95,7 @@
               "RelativeToolTip": "Pocket frog vs\\Player.h",
               "ViewState": "AgIAAAIAAAAAAAAAAAAQwDcAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-09-30T15:26:57.284Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-30T15:26:57.284Z"
             },
             {
               "$type": "Document",
@@ -110,7 +105,7 @@
               "RelativeDocumentMoniker": "Pocket frog vs\\Player.cpp",
               "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Player.cpp",
               "RelativeToolTip": "Pocket frog vs\\Player.cpp",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAgwIEAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAA0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-30T15:28:32.263Z",
               "EditorCaption": ""

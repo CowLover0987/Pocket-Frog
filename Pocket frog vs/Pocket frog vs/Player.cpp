@@ -11,8 +11,8 @@ Rectangle Player::GetHitbox() const {
 Rectangle Player::GetAttackHitbox() const {
     if (!isAttacking) return { 0, 0, 0, 0 };
 
-    float swordWidth = 32;
-    float swordHeight = 16;
+    float swordWidth = 40;
+    float swordHeight = 80;
     float offsetX = facingRight ? hitbox.width : -swordWidth;
 
     return {
@@ -112,6 +112,10 @@ void Player::Draw() const {
     const Texture2D* frogTexture = nullptr;
 
     if (isAttacking) {
+        Rectangle swordHitbox = GetAttackHitbox();
+        DrawRectangleRec(swordHitbox, Fade(RED, 0.4f)); // semi-transparent red
+        DrawRectangleLinesEx(swordHitbox, 1, DARKGRAY); // outline
+
         frogTexture = facingRight ? &attackRight : &attackLeft;
     }
     else if (!isOnGround) {
