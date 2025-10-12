@@ -90,6 +90,29 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
         }
     }
 
+    if (recentlyHit) {
+        hitCooldown -= dt;
+        if (hitCooldown <= 0.0f) {
+            recentlyHit = false;
+        }
+    }
+
+    if (isKnockback) {
+        position.x += knockbackVelocity.x * dt;
+        position.y += knockbackVelocity.y * dt;
+        knockbackTimer -= dt;
+
+        if (knockbackTimer <= 0.0f) {
+            isKnockback = false;
+            knockbackVelocity = { 0, 0 };
+        }
+
+        // Skip normal movement while bouncing
+        hitbox.x = position.x;
+        hitbox.y = position.y;
+        return;
+    }
+
     hitbox.y = position.y;
 
     blinkTimer += dt;
@@ -144,6 +167,12 @@ void Player::Draw() const {
         DrawRectangle(leftEyeX, eyeY, eyeWidth, eyeHeight, PINK);
         DrawRectangle(rightEyeX, eyeY, eyeWidth, eyeHeight, PINK);
     }
+}
+
+void Player::StartKnockback(Vector2 velocity) {
+    isKnockback = true;
+    knockbackVelocity = velocity;
+    knockbackTimer = knockbackDuration;
 }
 
 Player::~Player() {

@@ -9,6 +9,7 @@ public:
     void Update(float dt, Vector2 playerPos, const std::vector<Bush>& bushes);
     void Draw() const;
     Rectangle GetCollider() const;
+    Vector2 GetPosition() const;
 
     void TryMove(Vector2 delta, const std::vector<Bush>& bushes);
 

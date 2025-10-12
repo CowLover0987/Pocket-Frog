@@ -24,8 +24,18 @@ public:
     Vector2 previousPosition;
     Rectangle GetHitbox() const;
     Rectangle GetAttackHitbox() const;
+    void StartKnockback(Vector2 velocity);
 
     bool IsAttacking() const;
+    int health = 5;
+    bool recentlyHit = false;
+    float hitCooldown = 0.0f;
+    const float hitCooldownDuration = 1.0f; // seconds
+
+    bool isKnockback = false;
+    Vector2 knockbackVelocity = { 0, 0 };
+    float knockbackTimer = 0.0f;
+    const float knockbackDuration = 0.2f; // seconds
 
 private:
     Vector2 position;     // Player's position in the world
@@ -47,6 +57,7 @@ private:
     bool isAttacking = false;
     float attackTimer = 0.0f;
     const float attackDuration = 0.2f; // seconds
+    
 
     Texture2D frogIdle = { 0 };
     Texture2D frogIdleLeft = { 0 };

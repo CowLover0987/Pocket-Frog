@@ -10,6 +10,10 @@ inline float Clamp(float value, float min, float max) {
     return value;
 }
 
+Vector2 Enemy::GetPosition() const {
+    return position;
+}
+
 Enemy::Enemy(Vector2 startPos) {
     position = startPos;
     enemyMoveRight = LoadTexture("Resource Files/enemy_right.png");
@@ -18,6 +22,7 @@ Enemy::Enemy(Vector2 startPos) {
     if (enemyMoveRight.id == 0) std::cerr << "Failed to load evil_wool_right.png\n";
     if (enemyMoveLeft.id == 0) std::cerr << "Failed to load evil_wool_left.png\n";
 }
+
 
 void Enemy::Update(float dt, Vector2 playerPos, const std::vector<Bush>& bushes) {
     Vector2 toPlayer = { playerPos.x - position.x, playerPos.y - position.y };
