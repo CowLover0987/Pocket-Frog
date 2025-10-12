@@ -57,8 +57,24 @@ void UpdateGame(float dt) {
         }
     }
 
+    if (player->IsAttacking()) {
+        Rectangle swordHitbox = player->GetAttackHitbox();
+        for (Enemy& enemy : enemies) {
+            if (enemy.IsAlive() && CheckCollisionRecs(swordHitbox, enemy.GetCollider())) {
+                enemy.TakeDamage();
+            }
+        }
+    }
 
+    // Remove dead enemies
+    enemies.erase(
+        std::remove_if(enemies.begin(), enemies.end(),
+            [](const Enemy& e) { return !e.IsAlive(); }),
+        enemies.end()
+    );
 }
+
+
 
 void DrawGame() {
     BeginDrawing();

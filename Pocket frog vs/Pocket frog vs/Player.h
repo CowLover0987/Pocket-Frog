@@ -23,6 +23,9 @@ public:
 
     Vector2 previousPosition;
     Rectangle GetHitbox() const;
+    Rectangle GetAttackHitbox() const;
+
+    bool IsAttacking() const;
 
 private:
     Vector2 position;     // Player's position in the world
@@ -40,10 +43,15 @@ private:
     float blinkTimer = 0.0f;
     float blinkInterval = 3.0f; // seconds between blinks
     float blinkDuration = 0.2f; // how long the blink lasts
-
     
+    bool isAttacking = false;
+    float attackTimer = 0.0f;
+    const float attackDuration = 0.2f; // seconds
+
     Texture2D frogIdle = { 0 };
     Texture2D frogIdleLeft = { 0 };
     Texture2D frogJumpRight = { 0 };
     Texture2D frogJumpLeft = { 0 };
+    Texture2D attackRight = { 0 };
+    Texture2D attackLeft = { 0 };
 };

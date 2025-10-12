@@ -8,10 +8,29 @@ Rectangle Player::GetHitbox() const {
     return hitbox;
 }
 
+Rectangle Player::GetAttackHitbox() const {
+    if (!isAttacking) return { 0, 0, 0, 0 };
+
+    float swordWidth = 32;
+    float swordHeight = 16;
+    float offsetX = facingRight ? hitbox.width : -swordWidth;
+
+    return {
+        hitbox.x + offsetX,
+        hitbox.y + hitbox.height / 2 - swordHeight / 2,
+        swordWidth,
+        swordHeight
+    };
+}
+
 inline float Clamp(float value, float min, float max) {
     if (value < min) return min;
     if (value > max) return max;
     return value;
+}
+
+bool Player::IsAttacking() const {
+    return isAttacking;
 }
 
 // Constructor: initializes the player's position
@@ -20,7 +39,11 @@ Player::Player(Vector2 startPos) {
     frogIdleLeft = LoadTexture("Resource Files/idle_left.png");
     frogJumpRight = LoadTexture("Resource Files/jump_right.png");
     frogJumpLeft = LoadTexture("Resource Files/jump_left.png");
+    attackRight = LoadTexture("Resource Files/attack_right.png");
+    attackLeft = LoadTexture("Resource Files/attack_left.png");
 
+    if (attackLeft.id == 0) std::cerr << "Failed to load attack_left.png\n";
+    if (attackRight.id == 0) std::cerr << "Failed to load attack_frame.png\n";
     if (frogJumpRight.id == 0) std::cerr << "Failed to load jump_right.png\n";
     if (frogJumpLeft.id == 0) std::cerr << "Failed to load jump_left.png\n";
     if (frogIdle.id == 0) std::cerr << "Failed to load idle_right.png\n";
@@ -36,7 +59,7 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     velocity.y += gravity * dt; // apply gravity
     Vector2 move = { 0, velocity.y * dt };
 
-
+	//Left and right input
     if (IsKeyDown(KEY_LEFT)) {
         move.x -= 200 * dt;
         facingRight = false;
@@ -50,9 +73,21 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     TryMove(move, bushes);
 
     // Jump input
-    if (IsKeyPressed(KEY_SPACE) && isOnGround) {
+    if (IsKeyPressed(KEY_UP) && isOnGround) {
         velocity.y = jumpForce;
         isOnGround = false;
+    }
+
+	// Attack input
+    if (IsKeyPressed(KEY_SPACE) && !isAttacking) {
+        isAttacking = true;
+        attackTimer = attackDuration;
+    }
+    if (isAttacking) {
+        attackTimer -= dt;
+        if (attackTimer <= 0.0f) {
+            isAttacking = false;
+        }
     }
 
     hitbox.y = position.y;
@@ -73,26 +108,30 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
 // Draws the player as a blue rectangle
 void Player::Draw() const {
     DrawRectangleLinesEx(hitbox, 2, RED); // shows hitbox
+
     const Texture2D* frogTexture = nullptr;
 
-    if (!isOnGround) {
+    if (isAttacking) {
+        frogTexture = facingRight ? &attackRight : &attackLeft;
+    }
+    else if (!isOnGround) {
         frogTexture = facingRight ? &frogJumpRight : &frogJumpLeft;
     }
     else {
         frogTexture = facingRight ? &frogIdle : &frogIdleLeft;
     }
+
     if (frogTexture && frogTexture->id != 0) {
         Vector2 drawPos = {
             hitbox.x + hitbox.width / 2 - frogTexture->width / 2,
             hitbox.y + hitbox.height - frogTexture->height
         };
-        DrawTexture(*frogTexture, drawPos.x, drawPos.y, WHITE);
+        DrawTexture(*frogTexture, (int)drawPos.x, (int)drawPos.y, WHITE);
     }
 
     if (isBlinking) {
-        // Draw two horizontal lines over the eyes
         float eyeY = hitbox.y + 23;
-        float eyeWidth =4;
+        float eyeWidth = 4;
         float eyeHeight = 2;
 
         float leftEyeX = hitbox.x + hitbox.width / 2 - 12;

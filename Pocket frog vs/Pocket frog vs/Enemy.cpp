@@ -80,6 +80,18 @@ void Enemy::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
     position.y = proposed.y;
 }
 
+void Enemy::TakeDamage() {
+    health--;
+    if (health <= 0) {
+        isAlive = false;
+    }
+}
+
+bool Enemy::IsAlive() const {
+    return isAlive;
+}
+
+
 //Enemy::~Enemy() {
 //    UnloadTexture(enemyMoveRight);
 //    UnloadTexture(enemyMoveLeft);

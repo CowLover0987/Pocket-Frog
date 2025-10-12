@@ -14,6 +14,9 @@ public:
 
     //~Enemy();
 
+    void TakeDamage();
+    bool IsAlive() const;
+
 private:
     Vector2 position;
     float width = 96;   // bigger than bush
@@ -26,4 +29,7 @@ private:
     Texture2D enemyMoveRight = { 0 };
     Texture2D enemyMoveLeft = { 0 };
     bool facingRight = true;
+
+    int health = 1; // or more, if you want multi-hit enemies
+    bool isAlive = true;
 };

@@ -3,32 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\bush.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\bush.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\bush.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\bush.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Global.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CA078E71-4255-4B4B-8E48-1C49DEBC143C}|Pocket frog vs\\Pocket frog vs.vcxproj|solutionrelative:Pocket frog vs\\Global.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
@@ -48,83 +44,76 @@
               "RelativeDocumentMoniker": "Pocket frog vs\\main.cpp",
               "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\main.cpp",
               "RelativeToolTip": "Pocket frog vs\\main.cpp",
-              "ViewState": "AgIAABoAAAAAAAAAAAAgwCoAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAEUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-09-30T14:21:12.944Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "bush.h",
-              "DocumentMoniker": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\bush.h",
-              "RelativeDocumentMoniker": "Pocket frog vs\\bush.h",
-              "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\bush.h",
-              "RelativeToolTip": "Pocket frog vs\\bush.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAACAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Global.h",
+              "DocumentMoniker": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Global.h",
+              "RelativeDocumentMoniker": "Pocket frog vs\\Global.h",
+              "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Global.h",
+              "RelativeToolTip": "Pocket frog vs\\Global.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-10-09T19:10:08.72Z"
+              "WhenOpened": "2025-10-12T12:14:35.483Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "bush.cpp",
-              "DocumentMoniker": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\bush.cpp",
-              "RelativeDocumentMoniker": "Pocket frog vs\\bush.cpp",
-              "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\bush.cpp",
-              "RelativeToolTip": "Pocket frog vs\\bush.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-09T19:10:01.241Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Enemy.cpp",
               "DocumentMoniker": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.cpp",
               "RelativeDocumentMoniker": "Pocket frog vs\\Enemy.cpp",
               "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.cpp",
               "RelativeToolTip": "Pocket frog vs\\Enemy.cpp",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAADgAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAF0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-09T18:23:27.491Z"
+              "WhenOpened": "2025-10-09T18:23:27.491Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Enemy.h",
               "DocumentMoniker": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.h",
               "RelativeDocumentMoniker": "Pocket frog vs\\Enemy.h",
               "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.h",
               "RelativeToolTip": "Pocket frog vs\\Enemy.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-10-04T12:55:17.229Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Player.h",
               "DocumentMoniker": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Player.h",
               "RelativeDocumentMoniker": "Pocket frog vs\\Player.h",
               "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Player.h",
               "RelativeToolTip": "Pocket frog vs\\Player.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA7AAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwDcAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-09-30T15:26:57.284Z"
+              "WhenOpened": "2025-09-30T15:26:57.284Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Player.cpp",
               "DocumentMoniker": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Player.cpp",
               "RelativeDocumentMoniker": "Pocket frog vs\\Player.cpp",
               "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Player.cpp",
               "RelativeToolTip": "Pocket frog vs\\Player.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAgwIEAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-09-30T15:28:32.263Z"
+              "WhenOpened": "2025-09-30T15:28:32.263Z",
+              "EditorCaption": ""
             }
           ]
         }
