@@ -1,3 +1,6 @@
+// These are the tools and libraries the game uses.
+// raylib helps with drawing and input, memory helps manage objects,
+// and the other files define your frog, bushes, enemies, and shared data.
 #include "raylib.h"
 #include <memory>
 #include "Player.h"
@@ -7,19 +10,24 @@
 #include <string>
 #include <fstream>
 
-// Constants
+// Set the size of the game window
 const int screenWidth = 1280;
 const int screenHeight = 720;
+
+// Create the player, bushes, and enemies
 std::unique_ptr<Player> player;
 std::vector<Bush> bushes;
 std::vector<Enemy> enemies;
-Rectangle levelBounds = { 0, 0, 3000, 720 }; // x, y, width, height
 
-// Camera
+// Define the size of the world the player can move around in
+Rectangle levelBounds = { 0, 0, 3000, 720 }; // left, top, width, height
+
+// Set up the camera that follows the player
 Camera2D camera = { 0 };
 float halfScreenW = screenWidth / 2.0f;
 float halfScreenH = screenHeight / 2.0f;
 
+// A helper function to keep values within a safe range
 template <typename T>
 inline T Clamp(T value, T min, T max) {
     if (value < min) return min;
@@ -27,6 +35,7 @@ inline T Clamp(T value, T min, T max) {
     return value;
 }
 
+// These helpers do simple math with positions
 inline Vector2 Vector2Subtract(Vector2 v1, Vector2 v2) {
     return { v1.x - v2.x, v1.y - v2.y };
 }
@@ -43,6 +52,7 @@ inline Vector2 Vector2Scale(Vector2 v, float scale) {
     return { v.x * scale, v.y * scale };
 }
 
+// Save how many enemies the player has defeated to a file
 void SaveProgress() {
     std::ofstream saveFile("save.txt");
     if (saveFile.is_open()) {
@@ -51,63 +61,74 @@ void SaveProgress() {
     }
 }
 
+// Set up the game when it starts
 void InitGame() {
     InitWindow(screenWidth, screenHeight, "Pocket Frog");
-    SetTargetFPS(60);
+    SetTargetFPS(60); // Run at 60 frames per second
 
+    // Load saved progress from a file
     std::ifstream loadFile("save.txt");
     if (loadFile.is_open()) {
         loadFile >> enemiesDefeated;
         loadFile.close();
     }
 
+    // Set up the camera to center on the screen
     camera.offset = Vector2{ screenWidth / 2.0f, screenHeight / 2.0f };
     camera.zoom = 1.0f;
 
+    // Make sure the camera doesn't go outside the world
     camera.target.x = Clamp(camera.target.x, levelBounds.x + halfScreenW, levelBounds.x + levelBounds.width - halfScreenW);
     camera.target.y = Clamp(camera.target.y, levelBounds.y + halfScreenH, levelBounds.y + levelBounds.height - halfScreenH);
 
-
+    // Create the player frog at a starting position
     player = std::make_unique<Player>(Vector2{ 100, 520 });
 
-	//Bushes spawned locations, will need to be adjusted later
+    // Add bushes to the world
     bushes.push_back(Bush({ 400, 490 }));
     bushes.push_back(Bush({ 600, 490 }));
-    //Ememys spawned locations, will need to be adjusted later
+
+    // Add one enemy to start with
     enemies.push_back(Enemy({ 800, 490 }));
 }
 
+// Update the game logic every frame
 void UpdateGame(float dt) {
+    // Update the player (movement, jumping, attacking)
     player->Update(dt, bushes);
+
+    // If the player is swinging their sword, check for enemy hits
     if (player->IsAttacking()) {
         Rectangle swordHitbox = player->GetAttackHitbox();
         for (Enemy& enemy : enemies) {
             if (enemy.IsAlive() && CheckCollisionRecs(swordHitbox, enemy.GetCollider())) {
                 enemy.TakeDamage();
                 if (!enemy.IsAlive()) {
-                    enemiesDefeated++;
+                    enemiesDefeated++; // Count the defeat
                 }
             }
         }
     }
 
-    // Remove dead enemies
+    // Remove enemies that are no longer alive
     enemies.erase(
         std::remove_if(enemies.begin(), enemies.end(),
             [](const Enemy& e) { return !e.IsAlive(); }),
         enemies.end()
     );
 
+    // Update each enemy and check if they hit the player
     for (Enemy& enemy : enemies) {
         enemy.Update(dt, player->GetPosition(), bushes);
 
+        // If the enemy touches the player and the player isn't invincible
         if (enemy.IsAlive() && CheckCollisionRecs(enemy.GetCollider(), player->GetHitbox())) {
             if (!player->recentlyHit) {
-                player->health--;
+                player->health--; // Reduce player health
                 player->recentlyHit = true;
                 player->hitCooldown = player->hitCooldownDuration;
 
-                // Calculate knockback direction
+                // Push the player away from the enemy
                 float knockbackSpeed = 300.0f;
                 Vector2 dir = Vector2Normalize(Vector2Subtract(player->GetPosition(), enemy.GetPosition()));
                 player->StartKnockback(Vector2Scale(dir, knockbackSpeed));
@@ -115,6 +136,7 @@ void UpdateGame(float dt) {
         }
     }
 
+    // If the player's health reaches zero, end the game
     if (player->health <= 0) {
         DrawText("Game Over!", 500, 300, 40, RED);
         WaitTime(1.0f);
@@ -122,57 +144,66 @@ void UpdateGame(float dt) {
     }
 }
 
-
-
+// Draw everything on the screen
 void DrawGame() {
     BeginDrawing();
-    ClearBackground(DARKGRAY);
+    ClearBackground(DARKGRAY); // Set background color
 
-    BeginMode2D(camera);
+    BeginMode2D(camera); // Start drawing with camera movement
 
-    
-
-    // Draw ground
+    // Draw the ground and a red line to show where it is
     DrawRectangle(0, groundY, 3000, screenHeight - groundY, DARKBROWN);
-    DrawLine(0, groundY, 3000, groundY, RED); // horizontal ground line
+    DrawLine(0, groundY, 3000, groundY, RED);
 
+    // Draw the player frog
     player->Draw();
-    
 
+    // Draw all bushes
     for (const Bush& bush : bushes) {
         bush.Draw();
     }
 
+    // Draw all enemies
     for (const Enemy& enemy : enemies) {
         enemy.Draw();
     }
 
+    // Draw the edges of the world
     DrawRectangleLinesEx(levelBounds, 2, RED);
 
-    EndMode2D();
+    EndMode2D(); // Stop camera drawing
 
-    // HUD (optional for now)
+    // Draw the heads-up display (HUD)
     DrawText("Welcome to your pocket world", 20, 20, 30, WHITE);
+
+    // Show how many enemies have been defeated
     std::string counterText = "Enemies Defeated: " + std::to_string(enemiesDefeated);
     int textWidth = MeasureText(counterText.c_str(), 20);
     DrawText(counterText.c_str(), GetScreenWidth() - textWidth - 20, 20, 20, DARKGREEN);
+
+    // Show the player's current health
     DrawText(TextFormat("Health: %d", player->health), 20, 50, 20, RED);
-    
-    EndDrawing();
+
+    EndDrawing(); // Finish drawing everything
 }
 
+// The main function that runs the game
 int main() {
-    InitGame();
+    InitGame(); // Set everything up
 
+    // Keep running until the player closes the window
     while (!WindowShouldClose()) {
-        float dt = GetFrameTime();
-        camera.target = player->GetPosition();
-        UpdateGame(dt);
-        DrawGame();
+        float dt = GetFrameTime(); // Time since last frame
+        camera.target = player->GetPosition(); // Follow the player
+        UpdateGame(dt); // Update game logic
+        DrawGame();     // Draw everything
     }
+
+    // If the player presses S, save their progress
     if (IsKeyPressed(KEY_S)) {
         SaveProgress();
     }
-    CloseWindow();
+
+    CloseWindow(); // Close the game window
     return 0;
 }
