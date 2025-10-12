@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="bush.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>

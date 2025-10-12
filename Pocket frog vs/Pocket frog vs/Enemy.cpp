@@ -88,9 +88,13 @@ void Enemy::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
 }
 
 void Enemy::TakeDamage() {
-    health--;
+    health--; // reduce health by 1
     if (health <= 0) {
         isAlive = false;
+        std::cout << "Enemy defeated!\n"; // debug print
+    }
+    else {
+        std::cout << "Enemy took damage. Health now: " << health << "\n";
     }
 }
 

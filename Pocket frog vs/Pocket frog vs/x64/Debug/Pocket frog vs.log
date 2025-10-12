@@ -1,5 +1,8 @@
-﻿  Enemy.cpp
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Enemy.cpp(39,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  main.cpp
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(107,50): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(107,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(108,32): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(108,17): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
   Pocket frog vs.vcxproj -> C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\x64\Debug\Pocket frog vs.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

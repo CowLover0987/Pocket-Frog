@@ -4,6 +4,8 @@
 #include "bush.h"
 #include "Global.h"
 #include "Enemy.h"
+#include <string>
+#include <fstream>
 
 // Constants
 const int screenWidth = 1280;
@@ -25,9 +27,23 @@ inline T Clamp(T value, T min, T max) {
     return value;
 }
 
+void SaveProgress() {
+    std::ofstream saveFile("save.txt");
+    if (saveFile.is_open()) {
+        saveFile << enemiesDefeated;
+        saveFile.close();
+    }
+}
+
 void InitGame() {
     InitWindow(screenWidth, screenHeight, "Pocket Frog");
     SetTargetFPS(60);
+
+    std::ifstream loadFile("save.txt");
+    if (loadFile.is_open()) {
+        loadFile >> enemiesDefeated;
+        loadFile.close();
+    }
 
     camera.offset = Vector2{ screenWidth / 2.0f, screenHeight / 2.0f };
     camera.zoom = 1.0f;
@@ -62,6 +78,9 @@ void UpdateGame(float dt) {
         for (Enemy& enemy : enemies) {
             if (enemy.IsAlive() && CheckCollisionRecs(swordHitbox, enemy.GetCollider())) {
                 enemy.TakeDamage();
+                if (!enemy.IsAlive()) {
+                    enemiesDefeated++;
+                }
             }
         }
     }
@@ -82,7 +101,7 @@ void DrawGame() {
 
     BeginMode2D(camera);
 
-
+    
 
     // Draw ground
     DrawRectangle(0, groundY, 3000, screenHeight - groundY, DARKBROWN);
@@ -104,8 +123,9 @@ void DrawGame() {
 
     // HUD (optional for now)
     DrawText("Welcome to your pocket world", 20, 20, 30, WHITE);
-
-    
+    std::string counterText = "Enemies Defeated: " + std::to_string(enemiesDefeated);
+    int textWidth = MeasureText(counterText.c_str(), 20);
+    DrawText(counterText.c_str(), GetScreenWidth() - textWidth - 20, 20, 20, DARKGREEN);
 
     EndDrawing();
 }
@@ -119,7 +139,9 @@ int main() {
         UpdateGame(dt);
         DrawGame();
     }
-
+    if (IsKeyPressed(KEY_S)) {
+        SaveProgress();
+    }
     CloseWindow();
     return 0;
 }

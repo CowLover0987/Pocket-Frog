@@ -12,3 +12,4 @@ extern float halfScreenH;
 extern std::unique_ptr<Player> player;
 extern std::vector<Bush> bushes;
 extern float groundY;
+extern int enemiesDefeated;
