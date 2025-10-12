@@ -47,6 +47,7 @@ void Enemy::Update(float dt, Vector2 playerPos, const std::vector<Bush>& bushes)
 void Enemy::Draw() const {
     //DrawRectangleV(position, Vector2{ width, height }, ORANGE);
     const Texture2D* enemyTexture = facingRight ? &enemyMoveRight : &enemyMoveLeft;
+    
 
     Vector2 drawPos = {
         position.x - enemyTexture->width / 2,
@@ -55,10 +56,16 @@ void Enemy::Draw() const {
 
     DrawTexture(*enemyTexture, (int)drawPos.x, (int)drawPos.y, WHITE);
     
+
+    //Draw the enemy's collision box (for attack detection)
+    Rectangle collider = GetCollider();
+    DrawRectangleRec(collider, Fade(RED, 0.3f));         // semi-transparent fill
+    DrawRectangleLinesEx(collider, 1, DARKGRAY);         // outline
+
 }
 
 Rectangle Enemy::GetCollider() const {
-    return { position.x, position.y, width, height };
+    return { position.x - 50, position.y - 50, width, height };
 }
 
 void Enemy::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
