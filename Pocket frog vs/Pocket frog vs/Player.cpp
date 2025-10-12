@@ -239,3 +239,50 @@ void Player::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
 
     if (!blockedX) {
         position.x = proposedX.x;
+    }
+
+    // Vertical movement
+    Rectangle proposedY = { position.x, position.y + delta.y, hitbox.width, hitbox.height };
+    proposedY.y = Clamp(proposedY.y, levelBounds.y, levelBounds.y + levelBounds.height - hitbox.height);
+
+    bool landed = false;
+    bool blockedY = false;
+
+    for (const Bush& bush : bushes) {
+        Rectangle bushCollider = bush.GetCollider();
+        if (CheckCollisionRecs(proposedY, bushCollider)) {
+            bool landedOnBush = previousPosition.y + hitbox.height <= bushCollider.y + 2 &&
+                velocity.y > 0;
+
+            if (landedOnBush) {
+                position.y = bushCollider.y - hitbox.height;
+                velocity.y = 0;
+                isOnGround = true;
+                landed = true;
+                break;
+            }
+            else {
+                blockedY = true;
+                velocity.y = 0;
+                break;
+            }
+        }
+    }
+
+    if (!landed && !blockedY) {
+        position.y = proposedY.y;
+        isOnGround = false;
+    }
+
+    // Ground snap (if frog reaches the bottom of the level)
+    float frogFeet = position.y + hitbox.height;
+    if (frogFeet >= groundY - 1) {
+        position.y = groundY - hitbox.height;
+        velocity.y = 0;
+        isOnGround = true;
+    }
+
+    // Update hitbox position
+    hitbox.x = position.x;
+    hitbox.y = position.y;
+}
