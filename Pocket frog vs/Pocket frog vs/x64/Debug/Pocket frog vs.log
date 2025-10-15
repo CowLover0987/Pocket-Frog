@@ -3,9 +3,7 @@
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Enemy.cpp(55,42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Global.cpp
   main.cpp
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(195,75): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(195,47): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(195,22): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(203,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Player.cpp
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(186,49): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(186,39): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data

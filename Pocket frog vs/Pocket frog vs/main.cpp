@@ -86,6 +86,7 @@ void SaveProgress() {
 // Set up the game when it starts
 void InitGame() {
     InitWindow(screenWidth, screenHeight, "Pocket Frog");
+    
     SetTargetFPS(60); // Run at 60 frames per second
 
     // Load saved progress from a file
@@ -188,12 +189,25 @@ void UpdateGame(float dt) {
 // Draw everything on the screen
 void DrawGame() {
     BeginDrawing();
-    ClearBackground(DARKGRAY); // Set background color
+    ClearBackground(DARKGRAY);
+    Texture2D background = LoadTexture("Resource Files/background.png");
+
+    // Calculate how far the camera has moved
+    float camX = camera.target.x - screenWidth / 2.0f;
+
+    // How many tiles to draw across the screen
+    int tileCount = (int)(screenWidth / background.width) + 2;
+
+    // Draw background tiles
+    for (int i = -1; i < tileCount; i++) {
+        float x = (i * background.width) - fmod(camX, background.width);
+        DrawTexture(background, (int)x, -70, WHITE);
+    }
 
     BeginMode2D(camera); // Start drawing with camera movement
 
     // Draw the ground and a red line to show where it is
-    DrawRectangle(0, groundY, playerProgressX + screenWidth, screenHeight - groundY, DARKBROWN);
+    //DrawRectangle(0, groundY, playerProgressX + screenWidth, screenHeight - groundY, DARKBROWN);
     //DrawLine(0, groundY, 3000, groundY, RED);
 
     // Draw the player frog
@@ -228,6 +242,7 @@ void DrawGame() {
     DrawText(TextFormat("Health: %d", player->health), 20, 50, 20, RED);
 
     EndDrawing(); // Finish drawing everything
+    UnloadTexture(background);
 }
 
 // The main function that runs the game
@@ -237,7 +252,9 @@ int main() {
     // Keep running until the player closes the window
     while (!WindowShouldClose()) {
         float dt = GetFrameTime(); // Time since last frame
-        camera.target = player->GetPosition(); // Follow the player
+        Vector2 playerPos = player->GetPosition();
+        camera.target.x = playerPos.x;         // Follow horizontally
+        camera.target.y = screenHeight / 2.0f; // Stay centered vertically
         UpdateGame(dt); // Update game logic
         DrawGame();     // Draw everything
     }
