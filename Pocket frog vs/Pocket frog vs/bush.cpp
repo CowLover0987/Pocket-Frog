@@ -20,6 +20,10 @@ Bush::Bush(Vector2 position) {
     }
 }
 
+Vector2 Bush::GetPosition() const {
+    return { collider.x, collider.y };
+}
+
 // This function draws the bush on the screen
 void Bush::Draw() const {
     DrawTexture(bushTexture, (int)collider.x, (int)collider.y, WHITE); // Draw the bush image

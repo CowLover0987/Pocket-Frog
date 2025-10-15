@@ -1,0 +1,10 @@
+﻿  rgb picker.cpp
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\rgb picker\rgb picker\rgb picker.cpp(157,17): warning C4804: '<': unsafe use of type 'bool' in operation
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\rgb picker\rgb picker\rgb picker.cpp(176,17): warning C4804: '<': unsafe use of type 'bool' in operation
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\rgb picker\rgb picker\rgb picker.cpp(195,17): warning C4804: '<': unsafe use of type 'bool' in operation
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\rgb picker\rgb picker\rgb picker.cpp(208,28): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\rgb picker\rgb picker\rgb picker.cpp(208,33): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\rgb picker\rgb picker\rgb picker.cpp(208,40): warning C4838: conversion from 'int' to 'unsigned char' requires a narrowing conversion
+  rgb picker.vcxproj -> C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\rgb picker\x64\Debug\rgb picker.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

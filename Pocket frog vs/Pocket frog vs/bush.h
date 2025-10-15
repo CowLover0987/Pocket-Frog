@@ -18,6 +18,10 @@ public:
     // This function lets other parts of the game check where the bush is
     Rectangle GetCollider() const;
 
+
+	// This function returns the bush's position in the world
+    Vector2 GetPosition() const;
+
 private:
     // The bush's position in the world
     Vector2 pos;

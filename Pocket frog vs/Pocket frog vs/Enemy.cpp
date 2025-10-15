@@ -92,7 +92,7 @@ void Enemy::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
     Rectangle proposed = { position.x + delta.x, position.y + delta.y, width, height };
 
     // Keep the enemy inside the level boundaries
-    proposed.x = Clamp(proposed.x, levelBounds.x, levelBounds.x + levelBounds.width - width);
+    //proposed.x = Clamp(proposed.x, levelBounds.x, levelBounds.x + levelBounds.width - width);
     proposed.y = Clamp(proposed.y, levelBounds.y, levelBounds.y + levelBounds.height - height);
 
     // Check if the enemy would bump into a bush

@@ -214,7 +214,7 @@ void Player::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
 
     // Keep the frog inside the level boundaries
     if (proposed.x < levelBounds.x) proposed.x = levelBounds.x;
-    if (proposed.x + proposed.width > levelBounds.x + levelBounds.width)
+    //if (proposed.x + proposed.width > levelBounds.x + levelBounds.width)
         proposed.x = levelBounds.x + levelBounds.width - proposed.width;
 
     if (proposed.y < levelBounds.y) proposed.y = levelBounds.y;
@@ -223,7 +223,7 @@ void Player::TryMove(Vector2 delta, const std::vector<Bush>& bushes) {
 
     // Handle horizontal movement and bush collisions
     Rectangle proposedX = { position.x + delta.x, position.y, hitbox.width, hitbox.height };
-    proposedX.x = Clamp(proposedX.x, levelBounds.x, levelBounds.x + levelBounds.width - hitbox.width);
+    //proposedX.x = Clamp(proposedX.x, levelBounds.x, levelBounds.x + levelBounds.width - hitbox.width);
 
     bool blockedX = false;
     for (const Bush& bush : bushes) {
