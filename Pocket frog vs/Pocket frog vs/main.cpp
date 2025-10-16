@@ -19,6 +19,7 @@ enum GameState {
 
 GameState gameState = PLAYING;
 Texture2D background;
+Font dyslexicFont;
 
 // Set the size of the game window
 const int screenWidth = 1280;
@@ -90,9 +91,31 @@ void SaveProgress() {
     }
 }
 
+void RestartGame() {
+    // Reset game state
+    gameState = PLAYING;
+    enemiesDefeated = 0;
+    nextSpawnX = 1000.0f;
+
+    // Clear all objects
+    bushes.clear();
+    enemies.clear();
+
+    // Recreate player
+    player = std::make_unique<Player>(Vector2{ 100, 520 });
+
+    // Reset camera
+    camera.target = player->GetPosition();
+
+    // Add initial bushes or enemies if needed
+    bushes.push_back(Bush({ 400, 490 }));
+    bushes.push_back(Bush({ 600, 490 }));
+}
+
 // Set up the game when it starts
 void InitGame() {
     InitWindow(screenWidth, screenHeight, "Pocket Frog");
+    dyslexicFont = LoadFont("Resource Files/dyslexicFont.otf");
     background = LoadTexture("Resource Files/background.png");
     
     SetTargetFPS(60); // Run at 60 frames per second
@@ -227,26 +250,27 @@ void DrawGame() {
         EndMode2D(); // Stop camera drawing
 
         // Draw the heads-up display (HUD)
-        DrawText("Welcome to your pocket world", 20, 20, 30, WHITE);
+        DrawTextEx(dyslexicFont, "Welcome to your pocket world", { 20, 20 }, 32, 2, WHITE);
 
         // Show how many enemies have been defeated
-        std::string counterText = "Enemies Defeated: " + std::to_string(enemiesDefeated);
+        std::string counterText = "Wool Collected: " + std::to_string(enemiesDefeated);
         int textWidth = MeasureText(counterText.c_str(), 20);
-        DrawText(counterText.c_str(), GetScreenWidth() - textWidth - 20, 20, 20, DARKGREEN);
-        DrawText(TextFormat("High Score: %d", highScore), 20, 110, 20, GOLD);
+        DrawTextEx(dyslexicFont, counterText.c_str(), { (float)(GetScreenWidth() - textWidth -220), 20.0f }, 50, 2, WHITE);
+        DrawTextEx(dyslexicFont, TextFormat("High Score: %d", highScore), { 20, 110 }, 20, 2, GOLD);
 
 
         // Show the player's current health
-        DrawText(TextFormat("Health: %d", player->health), 20, 50, 20, RED);
+        DrawTextEx(dyslexicFont, TextFormat("Health: %d", player->health), { 20, 50 }, 20, 2, RED);
 
         EndDrawing(); // Finish drawing everything
     }
     
     if (gameState == GAME_OVER) {
         BeginDrawing(); // Add this
-        ClearBackground(DARKGRAY);
-        DrawText("Game Over!", 500, 300, 40, RED);
-        DrawText("Press ESC to exit", 500, 350, 20, WHITE);
+        ClearBackground(BLACK);
+        DrawTextEx(dyslexicFont, "Game Over!", { 500, 300 }, 40, 2, RED);
+        DrawTextEx(dyslexicFont, "Press ESC to exit", { 500, 350 }, 20, 2, WHITE);
+        DrawTextEx(dyslexicFont, "Press R to play again", { 490, 380 }, 20, 2, WHITE);
         EndDrawing(); // Add this
     }
 }
@@ -277,8 +301,14 @@ int main() {
 
         if (gameState == GAME_OVER && IsKeyPressed(KEY_ENTER)) {
             UnloadTexture(background);
+            UnloadFont(dyslexicFont);
             CloseWindow(); // or restart logic
         }
+
+        if (gameState == GAME_OVER && IsKeyPressed(KEY_R)) {
+                RestartGame();
+            }
     }
+
     return 0;
 }
