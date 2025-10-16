@@ -159,20 +159,24 @@ void UpdateGame(float dt) {
                 player->StartKnockback(Vector2Scale(dir, knockbackSpeed));
             }
         }
-        if (!enemy.IsAlive()) {
-            if (enemiesDefeated > highScore) {
-                highScore = enemiesDefeated;
-                SaveProgress(); // Save immediately when high score is beaten
-            }
-        }
+    }
 
+    // Check if any enemy was defeated and update high score
+    if (enemiesDefeated > highScore) {
+        highScore = enemiesDefeated;
+        SaveProgress(); // Save immediately when high score is beaten
     }
 
     // If the player's health reaches zero, end the game
     if (player->health <= 0) {
         DrawText("Game Over!", 500, 300, 40, RED);
         SaveProgress();
-        WaitTime(1.0f);
+        for (int i = 0; i < 60; i++) {
+            BeginDrawing();
+            ClearBackground(DARKGRAY);
+            DrawText("Game Over!", 500, 300, 40, RED);
+            EndDrawing();
+        }
         CloseWindow();
     }
 
