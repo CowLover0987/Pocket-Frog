@@ -146,15 +146,15 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
 
 // This draws the frog on screen with the correct texture
 void Player::Draw() const {
-    DrawRectangleLinesEx(hitbox, 2, RED); // Draws the hitbox for debugging
+    //DrawRectangleLinesEx(hitbox, 2, RED); // Draws the hitbox for debugging
 
     const Texture2D* frogTexture = nullptr;
 
     // Choose the right texture based on what the frog is doing
     if (isAttacking) {
         Rectangle swordHitbox = GetAttackHitbox();
-        DrawRectangleRec(swordHitbox, Fade(RED, 0.4f)); // Show sword hitbox
-        DrawRectangleLinesEx(swordHitbox, 1, DARKGRAY); // Outline
+        //DrawRectangleRec(swordHitbox, Fade(RED, 0.4f)); // Show sword hitbox
+        //DrawRectangleLinesEx(swordHitbox, 1, DARKGRAY); // Outline
 
         frogTexture = facingRight ? &attackRight : &attackLeft;
     }

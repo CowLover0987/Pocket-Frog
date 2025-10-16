@@ -17,6 +17,10 @@ enum GameState {
     GAME_OVER
 };
 
+float welcomeTimer = 0.0f;
+bool showWelcomeText = true;
+Texture2D cornerImage;
+
 GameState gameState = PLAYING;
 Texture2D background;
 Font dyslexicFont;
@@ -116,7 +120,9 @@ void RestartGame() {
 void InitGame() {
     InitWindow(screenWidth, screenHeight, "Pocket Frog");
     dyslexicFont = LoadFont("Resource Files/dyslexicFont.otf");
+    cornerImage = LoadTexture("Resource Files/linkQR.png");
     background = LoadTexture("Resource Files/background.png");
+    
     
     SetTargetFPS(60); // Run at 60 frames per second
 
@@ -152,6 +158,13 @@ void UpdateGame(float dt) {
     player->Update(dt, bushes);
     playerProgressX = player->GetPosition().x;
     SpawnEnvironment(playerProgressX);
+
+    if (showWelcomeText) {
+        welcomeTimer += dt;
+        if (welcomeTimer > 10.0f) { // 5 seconds
+            showWelcomeText = false;
+        }
+    }
 
     // If the player is swinging their sword, check for enemy hits
     if (player->IsAttacking()) {
@@ -218,6 +231,7 @@ void UpdateGame(float dt) {
 void DrawGame() {
     BeginDrawing();
     ClearBackground(DARKGRAY);
+
     if (gameState == PLAYING) {
 
         // Calculate how far the camera has moved
@@ -250,17 +264,23 @@ void DrawGame() {
         EndMode2D(); // Stop camera drawing
 
         // Draw the heads-up display (HUD)
-        DrawTextEx(dyslexicFont, "Welcome to your pocket world", { 20, 20 }, 32, 2, WHITE);
+        if (showWelcomeText) {
+            DrawTextEx(dyslexicFont, "Welcome to the Crocheter's Pocket World", { 230, 200 }, 45, 2, WHITE);
+        }
 
         // Show how many enemies have been defeated
         std::string counterText = "Wool Collected: " + std::to_string(enemiesDefeated);
         int textWidth = MeasureText(counterText.c_str(), 20);
         DrawTextEx(dyslexicFont, counterText.c_str(), { (float)(GetScreenWidth() - textWidth -220), 20.0f }, 50, 2, WHITE);
-        DrawTextEx(dyslexicFont, TextFormat("High Score: %d", highScore), { 20, 110 }, 20, 2, GOLD);
+        DrawTextEx(dyslexicFont, TextFormat("High Score: %d", highScore), { (float)(GetScreenWidth() - textWidth - 217), 50.0f }, 50, 2, WHITE);
+        DrawTextEx(dyslexicFont, "Controls: Left & Right = Arrow Keys, Jump = Up Arrow Key, Attak = Space Bar, Exit = Esc", { 20, 670 }, 25, 2, WHITE);
 
 
         // Show the player's current health
-        DrawTextEx(dyslexicFont, TextFormat("Health: %d", player->health), { 20, 50 }, 20, 2, RED);
+        DrawTextEx(dyslexicFont, TextFormat("Health: %d", player->health), { 20, 630 }, 50, 2, WHITE);
+
+        DrawTextEx(dyslexicFont, "Scan to give feedback!", {180, 20}, 30, 2, WHITE);
+        DrawTexture(cornerImage, 20, 20, WHITE);
 
         EndDrawing(); // Finish drawing everything
     }
@@ -302,6 +322,7 @@ int main() {
         if (gameState == GAME_OVER && IsKeyPressed(KEY_ENTER)) {
             UnloadTexture(background);
             UnloadFont(dyslexicFont);
+            UnloadTexture(cornerImage);
             CloseWindow(); // or restart logic
         }
 

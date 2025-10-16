@@ -77,8 +77,8 @@ void Enemy::Draw() const {
 
     // Draw the enemy's collision box so you can see where it can be hit
     Rectangle collider = GetCollider();
-    DrawRectangleRec(collider, Fade(RED, 0.3f));         // semi-transparent red box
-    DrawRectangleLinesEx(collider, 1, DARKGRAY);         // dark outline
+    //DrawRectangleRec(collider, Fade(RED, 0.3f));         // semi-transparent red box
+    //DrawRectangleLinesEx(collider, 1, DARKGRAY);         // dark outline
 }
 
 // This returns the enemy's hitbox — the area where it can be attacked
