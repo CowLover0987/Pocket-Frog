@@ -12,6 +12,13 @@
 #include <iostream>
 
 static float nextSpawnX = 1000.0f;
+enum GameState {
+    PLAYING,
+    GAME_OVER
+};
+
+GameState gameState = PLAYING;
+Texture2D background;
 
 // Set the size of the game window
 const int screenWidth = 1280;
@@ -86,6 +93,7 @@ void SaveProgress() {
 // Set up the game when it starts
 void InitGame() {
     InitWindow(screenWidth, screenHeight, "Pocket Frog");
+    background = LoadTexture("Resource Files/background.png");
     
     SetTargetFPS(60); // Run at 60 frames per second
 
@@ -168,16 +176,9 @@ void UpdateGame(float dt) {
     }
 
     // If the player's health reaches zero, end the game
-    if (player->health <= 0) {
-        DrawText("Game Over!", 500, 300, 40, RED);
+    if (player->health <= 0 && gameState == PLAYING) {
+        gameState = GAME_OVER;
         SaveProgress();
-        for (int i = 0; i < 60; i++) {
-            BeginDrawing();
-            ClearBackground(DARKGRAY);
-            DrawText("Game Over!", 500, 300, 40, RED);
-            EndDrawing();
-        }
-        CloseWindow();
     }
 
     //float cleanupX = playerProgressX - 800;
@@ -194,59 +195,60 @@ void UpdateGame(float dt) {
 void DrawGame() {
     BeginDrawing();
     ClearBackground(DARKGRAY);
-    Texture2D background = LoadTexture("Resource Files/background.png");
+    if (gameState == PLAYING) {
 
-    // Calculate how far the camera has moved
-    float camX = camera.target.x - screenWidth / 2.0f;
+        // Calculate how far the camera has moved
+        float camX = camera.target.x - screenWidth / 2.0f;
 
-    // How many tiles to draw across the screen
-    int tileCount = (int)(screenWidth / background.width) + 2;
+        // How many tiles to draw across the screen
+        int tileCount = (int)(screenWidth / background.width) + 2;
 
-    // Draw background tiles
-    for (int i = -1; i < tileCount; i++) {
-        float x = (i * background.width) - fmod(camX, background.width);
-        DrawTexture(background, (int)x, -70, WHITE);
+        // Draw background tiles
+        for (int i = -1; i < tileCount; i++) {
+            float x = (i * background.width) - fmod(camX, background.width);
+            DrawTexture(background, (int)x, -70, WHITE);
+        }
+
+        BeginMode2D(camera); // Start drawing with camera movement
+
+        // Draw the player frog
+        player->Draw();
+
+        // Draw all bushes
+        for (const Bush& bush : bushes) {
+            bush.Draw();
+        }
+
+        // Draw all enemies
+        for (const Enemy& enemy : enemies) {
+            enemy.Draw();
+        }
+
+        EndMode2D(); // Stop camera drawing
+
+        // Draw the heads-up display (HUD)
+        DrawText("Welcome to your pocket world", 20, 20, 30, WHITE);
+
+        // Show how many enemies have been defeated
+        std::string counterText = "Enemies Defeated: " + std::to_string(enemiesDefeated);
+        int textWidth = MeasureText(counterText.c_str(), 20);
+        DrawText(counterText.c_str(), GetScreenWidth() - textWidth - 20, 20, 20, DARKGREEN);
+        DrawText(TextFormat("High Score: %d", highScore), 20, 110, 20, GOLD);
+
+
+        // Show the player's current health
+        DrawText(TextFormat("Health: %d", player->health), 20, 50, 20, RED);
+
+        EndDrawing(); // Finish drawing everything
     }
-
-    BeginMode2D(camera); // Start drawing with camera movement
-
-    // Draw the ground and a red line to show where it is
-    //DrawRectangle(0, groundY, playerProgressX + screenWidth, screenHeight - groundY, DARKBROWN);
-    //DrawLine(0, groundY, 3000, groundY, RED);
-
-    // Draw the player frog
-    player->Draw();
-
-    // Draw all bushes
-    for (const Bush& bush : bushes) {
-        bush.Draw();
+    
+    if (gameState == GAME_OVER) {
+        BeginDrawing(); // Add this
+        ClearBackground(DARKGRAY);
+        DrawText("Game Over!", 500, 300, 40, RED);
+        DrawText("Press ESC to exit", 500, 350, 20, WHITE);
+        EndDrawing(); // Add this
     }
-
-    // Draw all enemies
-    for (const Enemy& enemy : enemies) {
-        enemy.Draw();
-    }
-
-    // Draw the edges of the world
-    //DrawRectangleLinesEx(levelBounds, 2, RED);
-
-    EndMode2D(); // Stop camera drawing
-
-    // Draw the heads-up display (HUD)
-    DrawText("Welcome to your pocket world", 20, 20, 30, WHITE);
-
-    // Show how many enemies have been defeated
-    std::string counterText = "Enemies Defeated: " + std::to_string(enemiesDefeated);
-    int textWidth = MeasureText(counterText.c_str(), 20);
-    DrawText(counterText.c_str(), GetScreenWidth() - textWidth - 20, 20, 20, DARKGREEN);
-    DrawText(TextFormat("High Score: %d", highScore), 20, 110, 20, GOLD);
-
-
-    // Show the player's current health
-    DrawText(TextFormat("Health: %d", player->health), 20, 50, 20, RED);
-
-    EndDrawing(); // Finish drawing everything
-    UnloadTexture(background);
 }
 
 // The main function that runs the game
@@ -255,18 +257,28 @@ int main() {
 
     // Keep running until the player closes the window
     while (!WindowShouldClose()) {
-        float dt = GetFrameTime(); // Time since last frame
-        Vector2 playerPos = player->GetPosition();
-        camera.target.x = playerPos.x;         // Follow horizontally
-        camera.target.y = screenHeight / 2.0f; // Stay centered vertically
-        UpdateGame(dt); // Update game logic
-        DrawGame();     // Draw everything
-    }
+        float dt = GetFrameTime();
+        if (player) {
+            Vector2 playerPos = player->GetPosition();
+            camera.target.x = playerPos.x;
+        }
+        camera.target.y = screenHeight / 2.0f;
 
-    CloseWindow(); // Close the game window
-    if (IsKeyPressed(KEY_ESCAPE)) {
-        SaveProgress();
-        CloseWindow(); // or set gameState to exit
+        if (gameState == PLAYING) {
+            UpdateGame(dt);
+        }
+
+        DrawGame();
+
+        if (IsKeyPressed(KEY_ESCAPE)) {
+            SaveProgress();
+            CloseWindow(); // or set gameState to exit
+        }
+
+        if (gameState == GAME_OVER && IsKeyPressed(KEY_ENTER)) {
+            UnloadTexture(background);
+            CloseWindow(); // or restart logic
+        }
     }
     return 0;
 }
