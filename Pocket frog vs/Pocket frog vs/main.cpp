@@ -11,6 +11,10 @@
 #include <fstream>
 #include <iostream>
 
+Music bgMusic;
+bool isMuted = false;
+float musicVolume = 0.5f; // Default volume
+
 static float nextSpawnX = 1000.0f;
 enum GameState {
     PLAYING,
@@ -119,9 +123,13 @@ void RestartGame() {
 // Set up the game when it starts
 void InitGame() {
     InitWindow(screenWidth, screenHeight, "Pocket Frog");
+    InitAudioDevice();
+    SetMusicVolume(bgMusic, musicVolume);
     dyslexicFont = LoadFont("Resource Files/dyslexicFont.otf");
     cornerImage = LoadTexture("Resource Files/linkQR.png");
     background = LoadTexture("Resource Files/background.png");
+    bgMusic = LoadMusicStream("Resource Files/Music and Sound Affects/background_music.mp3"); // or .ogg, .wav
+    PlayMusicStream(bgMusic);
     
     
     SetTargetFPS(60); // Run at 60 frames per second
@@ -271,9 +279,16 @@ void DrawGame() {
         // Show how many enemies have been defeated
         std::string counterText = "Wool Collected: " + std::to_string(enemiesDefeated);
         int textWidth = MeasureText(counterText.c_str(), 20);
-        DrawTextEx(dyslexicFont, counterText.c_str(), { (float)(GetScreenWidth() - textWidth -220), 20.0f }, 50, 2, WHITE);
+        DrawTextEx(dyslexicFont, counterText.c_str(), { (float)(GetScreenWidth() - textWidth -220), 20.0f }, 50, 2, WHITE); //The postition is in the brakets
         DrawTextEx(dyslexicFont, TextFormat("High Score: %d", highScore), { (float)(GetScreenWidth() - textWidth - 217), 50.0f }, 50, 2, WHITE);
         DrawTextEx(dyslexicFont, "Controls: Left & Right = Arrow Keys, Jump = Up Arrow Key, Attak = Space Bar, Exit = Esc", { 20, 670 }, 25, 2, WHITE);
+        
+        if (isMuted) {
+            DrawTextEx(dyslexicFont, "Music: Muted (Press M)", { 180, 60 }, 30, 2, GRAY);
+        }
+        else {
+            DrawTextEx(dyslexicFont, "Music: On (Press M to mute)", { 180, 60 }, 30, 2, WHITE);
+        }
 
 
         // Show the player's current health
@@ -301,6 +316,7 @@ int main() {
 
     // Keep running until the player closes the window
     while (!WindowShouldClose()) {
+        UpdateMusicStream(bgMusic);
         float dt = GetFrameTime();
         if (player) {
             Vector2 playerPos = player->GetPosition();
@@ -314,8 +330,15 @@ int main() {
 
         DrawGame();
 
+        if (IsKeyPressed(KEY_M)) {
+            isMuted = !isMuted;
+            SetMusicVolume(bgMusic, isMuted ? 0.0f : musicVolume);
+        }
+
         if (IsKeyPressed(KEY_ESCAPE)) {
             SaveProgress();
+            UnloadMusicStream(bgMusic);
+            CloseAudioDevice();
             CloseWindow(); // or set gameState to exit
         }
 
@@ -323,6 +346,8 @@ int main() {
             UnloadTexture(background);
             UnloadFont(dyslexicFont);
             UnloadTexture(cornerImage);
+            UnloadMusicStream(bgMusic);
+            CloseAudioDevice();
             CloseWindow(); // or restart logic
         }
 

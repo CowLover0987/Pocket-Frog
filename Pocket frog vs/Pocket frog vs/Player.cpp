@@ -1,6 +1,7 @@
 #include "Player.h"     // Includes the player class definition
 #include "Global.h"     // Shared game data like level boundaries
 #include <iostream>     // Lets us print messages for debugging
+#include <raylib.h>     // For loading sounds
 
 // This sets the height of the ground in the game world
 float groundY = 520;
@@ -56,6 +57,10 @@ Player::Player(Vector2 startPos) {
     if (frogIdle.id == 0) std::cerr << "Failed to load idle_right.png\n";
     if (frogIdleLeft.id == 0) std::cerr << "Failed to load idle_left.png\n";
 
+    // Load sounds as member variables
+    jumpSound = LoadSound("Resource Files/Music and Sound Affects/jump_sound_affect.wav");
+    attackSound = LoadSound("Resource Files/Music and Sound Affects/attack_sound_affect.wav");
+
     // Set the frog's starting position and hitbox
     position = startPos;
     hitbox = { position.x, position.y, width, height };
@@ -86,12 +91,14 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
     if (IsKeyPressed(KEY_UP) && isOnGround) {
         velocity.y = jumpForce;
         isOnGround = false;
+        PlaySound(jumpSound);
     }
 
     // Start attacking if SPACE is pressed
     if (IsKeyPressed(KEY_SPACE) && !isAttacking) {
         isAttacking = true;
         attackTimer = attackDuration;
+		PlaySound(attackSound);
     }
 
     // Handle attack timing
@@ -146,14 +153,14 @@ void Player::Update(float dt, const std::vector<Bush>& bushes) {
 
 // This draws the frog on screen with the correct texture
 void Player::Draw() const {
-    //DrawRectangleLinesEx(hitbox, 2, RED); // Draws the hitbox for debugging
+    DrawRectangleLinesEx(hitbox, 2, RED); // Draws the hitbox for debugging
 
     const Texture2D* frogTexture = nullptr;
 
     // Choose the right texture based on what the frog is doing
     if (isAttacking) {
         Rectangle swordHitbox = GetAttackHitbox();
-        //DrawRectangleRec(swordHitbox, Fade(RED, 0.4f)); // Show sword hitbox
+        DrawRectangleRec(swordHitbox, Fade(RED, 0.4f)); // Show sword hitbox
         //DrawRectangleLinesEx(swordHitbox, 1, DARKGRAY); // Outline
 
         frogTexture = facingRight ? &attackRight : &attackLeft;
@@ -201,6 +208,10 @@ Player::~Player() {
     UnloadTexture(frogIdleLeft);
     UnloadTexture(frogJumpRight);
     UnloadTexture(frogJumpLeft);
+
+    // Unload sounds
+    UnloadSound(jumpSound);
+    UnloadSound(attackSound);
 }
 
 // Returns the frog's current position (used by camera and other systems)

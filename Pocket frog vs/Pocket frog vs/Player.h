@@ -100,4 +100,7 @@ private:
     Texture2D frogJumpLeft = { 0 };
     Texture2D attackRight = { 0 };
     Texture2D attackLeft = { 0 };
+
+    Sound jumpSound;
+    Sound attackSound;
 };
