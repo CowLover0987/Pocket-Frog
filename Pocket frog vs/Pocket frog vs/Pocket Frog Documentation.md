@@ -58,9 +58,17 @@ The animation frame is accommodated to switch to between left and right dependin
 
 Enemy Code Snippet: 
 ```c
-// Figure out how far the player is from the enemy Vector2 toPlayer = { playerPos.x - position.x, playerPos.y - position.y }; float distance = std::sqrt(toPlayer.x * toPlayer.x + toPlayer.y * toPlayer.y); 
+// Figure out how far the player is from the enemy
+Vector2 toPlayer = { playerPos.x - position.x, playerPos.y - position.y }; float distance = std::sqrt(toPlayer.x * toPlayer.x + toPlayer.y * toPlayer.y); 
 
- // Face the direction the enemy is moving if (velocity.x > 0) facingRight = true; else if (velocity.x < 0) facingRight = false;  // If the player is close enough, chase them if (distance < detectionRadius) {    // Only move left or right (not up/down)    float length = std::sqrt(toPlayer.x * toPlayer.x);    if (length != 0) {        velocity.x = (toPlayer.x / length) * chaseSpeed;    }    velocity.y = 0; } else {    // If the player is far away, wander back and forth slowly    velocity.x = std::sin(GetTime()) * speed;    velocity.y = 0; }  
+ // Face the direction the enemy is moving
+if (velocity.x > 0) facingRight = true; else if (velocity.x < 0) facingRight = false;
+// If the player is close enough, chase them
+if (distance < detectionRadius) {
+// Only move left or right (not up/down)
+float length = std::sqrt(toPlayer.x * toPlayer.x);    if (length != 0) {        velocity.x = (toPlayer.x / length) * chaseSpeed;    }    velocity.y = 0; } else {
+// If the player is far away, wander back and forth slowly
+velocity.x = std::sin(GetTime()) * speed;    velocity.y = 0; }  
 ```
 UI system – displays the health of the player, the current and high score, the player controls and the welcome message within the beginning. All scores and health updating to display the correct number of hits given to the player and given to the enemies to allow for the player always know what their score/health is. 
 
