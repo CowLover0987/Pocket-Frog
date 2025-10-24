@@ -317,11 +317,11 @@ Examples of my methods of noting daily accomplishments and setting minimums and 
 
 2.4 Testing and Iteration 
 
-The game is tested via its early access on itch.io with a QR code link to a form with question on graphics, audio, gameplay and general feedback. 
+The game is tested via its early access on itch.io with a  link to a form with question on graphics, audio, gameplay and general feedback. 
 
 2.5 Feedback and Adjustments 
 
-Feedback is gathered via a google form, the form is accessed by a QR code that is displayed on the game window, within the form is the link to a bug report if any bugs are found by testers. 
+Feedback is gathered via a google form, the form is accessed by a link in the game folder READ ME file, within the form is the link to a bug report if any bugs are found by testers. 
 
 The testers are asked to answer the following qualitive and quantitive questions: 
 
@@ -353,7 +353,7 @@ The testers are asked to answer the following qualitive and quantitive questi
 
 14. Did you encounter any bugs? 
 
-15. If yes, please scan QR code to go to my Bug survey 
+15. If yes, here is the link to the bug report:... 
 
 16. Was there anything that stood out? 
 

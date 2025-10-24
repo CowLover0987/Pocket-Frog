@@ -7,8 +7,6 @@ C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog 
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(194,40): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(194,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
 C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\Player.cpp(194,23): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  main.cpp
-C:\Users\saman\OneDrive\Documents\GitHub\Pocket-Frog\Pocket frog vs\Pocket frog vs\main.cpp(253,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   Generating code
   3 of 371 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
