@@ -284,18 +284,17 @@ void DrawGame() {
         DrawTextEx(dyslexicFont, "Controls: Left & Right = Arrow Keys, Jump = Up Arrow Key, Attak = Space Bar, Exit = Esc", { 20, 670 }, 25, 2, WHITE);
         
         if (isMuted) {
-            DrawTextEx(dyslexicFont, "Music: Muted (Press M)", { 180, 60 }, 30, 2, GRAY);
+            DrawTextEx(dyslexicFont, "Music: Muted (Press M)", { 20, 60 }, 30, 2, GRAY);
         }
         else {
-            DrawTextEx(dyslexicFont, "Music: On (Press M to mute)", { 180, 60 }, 30, 2, WHITE);
+            DrawTextEx(dyslexicFont, "Music: On (Press M to mute)", { 20, 60 }, 30, 2, WHITE);
         }
 
+        DrawTextEx(dyslexicFont, "Link to Feedback Form in READ ME file!", { 20, 20 }, 30, 2, WHITE);
 
         // Show the player's current health
         DrawTextEx(dyslexicFont, TextFormat("Health: %d", player->health), { 20, 630 }, 50, 2, WHITE);
 
-        DrawTextEx(dyslexicFont, "Scan to give feedback!", {180, 20}, 30, 2, WHITE);
-        DrawTexture(cornerImage, 20, 20, WHITE);
 
         EndDrawing(); // Finish drawing everything
     }
