@@ -72,8 +72,7 @@
               "ViewState": "AgIAADYAAAAAAAAAAAAAAGgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-09-30T15:26:57.284Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -131,7 +130,7 @@
               "RelativeDocumentMoniker": "Pocket frog vs\\Enemy.cpp",
               "ToolTip": "C:\\Users\\saman\\OneDrive\\Documents\\GitHub\\Pocket-Frog\\Pocket frog vs\\Pocket frog vs\\Enemy.cpp",
               "RelativeToolTip": "Pocket frog vs\\Enemy.cpp",
-              "ViewState": "AgIAABYAAAAAAAAAAAAiwEAAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAYwEAAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-10-09T18:23:27.491Z",
               "EditorCaption": ""
@@ -158,8 +157,7 @@
               "RelativeToolTip": "Pocket frog vs\\Player.cpp*",
               "ViewState": "AgIAAB0AAAAAAAAAAAAYwKcAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-09-30T15:28:32.263Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-30T15:28:32.263Z"
             }
           ]
         }
