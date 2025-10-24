@@ -94,7 +94,7 @@ The jump also takes a keyboard input but sends the player in a vertical movement
 Attacking also takes a keyboard in put but from the space bar and does not move the player, it triggers the graphic frame change and activates a set attack timer for the showing of the attack frame, also activating an additional collision box in front of the player which when overlapping with an enemy deals damage to the enemies health. 
 
 Player’s Movement Code Snippet: 
-
+```c
 // Move left or right based on keyboard input 
 
     if (IsKeyDown(KEY_LEFT)) { 
@@ -140,7 +140,7 @@ Player’s Movement Code Snippet: 
 PlaySound(attackSound); 
 
     } 
-
+```
 * Interactions 
 
 Interactions between player, objects and enemies are handled by collision boxes that dictate what happened when they are overlapped. 
@@ -148,7 +148,7 @@ Interactions between player, objects and enemies are handled by collision box
 The main collision boxed for each object are to prevent them from moving through each other and for taking damage while the two addition collision boxes for the player and enemy are to dealing damage to each other. 
 
 Player Collision Code Snippet: 
-
+```c
 // Returns the player's hitbox — used to detect collisions with enemies or bushes 
 
 Rectangle Player::GetHitbox() const { 
@@ -220,7 +220,7 @@ Rectangle Enemy::GetCollider() const { 
         } 
 
     } 
-
+```
 * UI / menus 
 
 The UI options are displayed on the bottom of the screen during game for exiting correctly with saving and on the GAME OVER scene for either exiting or replaying.  
@@ -228,7 +228,7 @@ The UI options are displayed on the bottom of the screen during game for exiting
 The same as the controls displayed on the UI system the high score and current score are displayed. 
 
 UI code snippet: 
-
+```c
 // Create a string that shows how many enemies have been defeated (wool collected) 
 
 std::string counterText = "Wool Collected: " + std::to_string(enemiesDefeated); 
@@ -264,7 +264,7 @@ if (isMuted) { 
     DrawTextEx(dyslexicFont, "Music: On (Press M to mute)", { 180, 60 }, 30, 2, WHITE); 
 
 } 
-
+```
 * Audio / Sound affects 
 
 Audio is played in the background when the game starts and can be muted, as displayed on screen during play and reads either to mute the music or that it is already muted, by pressing a keyboard key. 
@@ -272,7 +272,7 @@ Audio is played in the background when the game starts and can be muted, as disp
 Sound effects can be heard when they are active during certain moments of the player such as attacking and jumping. 
 
 Audio/Sound Affects Code Snippet: 
-
+```c
 Music bgMusic; 
 
 bool isMuted = false; 
@@ -308,7 +308,7 @@ PlaySound(attackSound); 
         PlaySound(jumpSound); 
 
     }  
-
+```
 Figure 5: 
 
 ![loading-ag-685](file:///C:/Users/saman/OneDrive/Documents/GitHub/Pocket-Frog/Pocket%20frog%20vs/x64/Debug/Resource%20Files/IMG_20251023_154044100_MFNR.jpg)![loading-ag-687](file:///C:/Users/saman/OneDrive/Documents/GitHub/Pocket-Frog/Pocket%20frog%20vs/x64/Debug/Resource%20Files/IMG_20251023_154048467_MFNR.jpg) 
